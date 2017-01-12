@@ -20,9 +20,9 @@ public class UsersController {
 
     public UsersController() {
        users = Lists.newArrayList(
-                new Users(1, "Owner 1", "owner1_pwd"),
-                new Users(2, "Owner 2", "owner2_pwd"),
-                new Users(3, "Owner 3", "owner3_pwd")
+                new Users(1, "Surveys 1", "owner1_pwd"),
+                new Users(2, "Surveys 2", "owner2_pwd"),
+                new Users(3, "Surveys 3", "owner3_pwd")
         );
     }
 

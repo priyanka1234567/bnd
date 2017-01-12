@@ -13,18 +13,17 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 
-#Restaurant
-GET      /restaurants             controllers.RestaurantController.getAllRestaurants()
-POST     /restaurants             controllers.RestaurantController.addRestaurant()
-GET      /restaurants/:id         controllers.RestaurantController.getRestaurantByID(id:Integer)
-PUT      /restaurants/:id         controllers.RestaurantController.updateRestaurant(id:Integer)
-DELETE   /restaurants/:id         controllers.RestaurantController.deleteRestaurant(id:Integer)
+#survey entries
+GET      /Surveyors             controllers.SurveyorsController.getAllSurveyentries()
+POST     /Surveyors             controllers.SurveyorsController.addNewSurveyEntry()
+GET      /Surveyors/:id         controllers.SurveyorsController.getSurveyEntryByID(id:Integer)
+DELETE   /Surveyors/:id         controllers.SurveyorsController.deleteSurveyEntry(id:Integer)
 
-#Owner
-GET       /owners                 controllers.OwnerController.getAllOwners()
-POST      /owners                 controllers.OwnerController.addOwner()
-PUT       /owners/:id             controllers.OwnerController.updateOwner(id:Integer)
-DELETE    /owners/:id             controllers.OwnerController.deleteOwner(id:Integer)
+#survey details
+GET       /Surveys                 controllers.SurveysController.getAllSurveys()
+POST      /Surveys                controllers.SurveysController.addNewSurvey()
+GET       /Surveys/:id             controllers.SurveysController.getSurveyByID(id:Integer)
+DELETE    /Surveys/:id             controllers.SurveysController.deleteSurvey(id:Integer)
 
 
 GET       /users                controllers.UsersController.getAllUsers()
