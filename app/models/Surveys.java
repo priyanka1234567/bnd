@@ -1,12 +1,21 @@
 package models;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by welcome on 1/4/2017.
  */
+@Entity
 public class Surveys {
+    @Id
+    @GeneratedValue
     private int sid;
+    @Basic
+
     private String sname;
+    @Basic
     private String sdescription;
+    @Basic
     private String date;
 
 

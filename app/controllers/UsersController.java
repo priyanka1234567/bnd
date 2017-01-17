@@ -1,12 +1,17 @@
 package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 import models.Users;
 import play.Logger;
+import play.db.jpa.JPAApi;
+import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Result;
 
 import java.util.List;
+import javax.persistence.TypedQuery;
+
 
 import static play.mvc.Controller.request;
 import static play.mvc.Results.badRequest;
@@ -16,22 +21,35 @@ import static play.mvc.Results.ok;
  * Created by pdevkare on 07/01/17.
  */
 public class UsersController {
-    private List<Users> users;
+//    private List<Users> users;
 
     public UsersController() {
-       users = Lists.newArrayList(
-                new Users(1, "Surveys 1", "owner1_pwd"),
-                new Users(2, "Surveys 2", "owner2_pwd"),
-                new Users(3, "Surveys 3", "owner3_pwd")
-        );
+//       users = Lists.newArrayList(
+//                new Users(1, "Surveys 1", "owner1_pwd"),
+//                new Users(2, "Surveys 2", "owner2_pwd"),
+//                new Users(3, "Surveys 3", "owner3_pwd")
+//        );
     }
 
-    public Result getAllUsers(){
+    private JPAApi jpaApi;
+
+    @Inject
+    public UsersController(JPAApi jpaApi) {
+        this.jpaApi = jpaApi;
+    }
+
+    @Transactional
+    public Result getAllUsers() {
+        TypedQuery<Users> query = jpaApi.em().createQuery("select u from Users u", Users.class);
+        List<Users> users = query.getResultList();
+        Logger.info("users", users);
 
         JsonNode json = Json.toJson(users);
         return ok(json);
     }
-    public Result addUser(){
+
+    @Transactional
+    public Result addUser() {
         final JsonNode json = request().body().asJson();
         if (null == json) {
             Logger.error("Unable to get json from request");
@@ -48,8 +66,27 @@ public class UsersController {
        /* if (null == o.getOname()) {
             return badRequest();
         }*/
-        users.add(u);
+        jpaApi.em().persist(u);
         return ok(json);
     }
 
+    @Transactional
+    public Result updateUserPassword(Integer id) {
+        final JsonNode json = request().body().asJson();
+        if (null == json) {
+
+            return badRequest("json not found");
+        }
+        Users u=Json.fromJson(json,Users.class);
+        if(null==u)
+        {
+            return badRequest("not found");
+        }
+        Users old=jpaApi.em().find(Users.class,id);
+        old.setUpwd(u.getUpwd());
+        jpaApi.em().merge(old);
+        return ok("updated password for "+old.getUname());
+    }
+
 }
+

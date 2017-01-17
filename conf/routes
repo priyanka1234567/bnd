@@ -14,18 +14,20 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 
 #survey entries
-GET      /Surveyors             controllers.SurveyorsController.getAllSurveyentries()
-POST     /Surveyors             controllers.SurveyorsController.addNewSurveyEntry()
-GET      /Surveyors/:id         controllers.SurveyorsController.getSurveyEntryByID(id:Integer)
-DELETE   /Surveyors/:id         controllers.SurveyorsController.deleteSurveyEntry(id:Integer)
+GET      /Features             controllers.FeaturesController.getAllSurveyentries()
+POST     /Features             controllers.FeaturesController.addNewSurveyEntry()
+GET      /Features/:id         controllers.FeaturesController.getSurveyEntryByID(id:Integer)
+DELETE   /Features/:id         controllers.FeaturesController.deleteSurveyEntryById(id:Integer)
 
 #survey details
 GET       /Surveys                 controllers.SurveysController.getAllSurveys()
 POST      /Surveys                controllers.SurveysController.addNewSurvey()
 GET       /Surveys/:id             controllers.SurveysController.getSurveyByID(id:Integer)
-DELETE    /Surveys/:id             controllers.SurveysController.deleteSurvey(id:Integer)
+#GET       /Surveys/:name             controllers.SurveysController.getSurveyByName(name:String)
+DELETE    /Surveys/:id             controllers.SurveysController.deleteSurveyById(id:Integer)
 
-
+#users
 GET       /users                controllers.UsersController.getAllUsers()
 POST       /users                       controllers.UsersController.addUser()
+PUT         /users/:id              controllers.UsersController.updateUserPassword(id:Integer)
 

@@ -2,33 +2,39 @@ package models;
 
 import java.io.File;
 import java.sql.Time;
+import javax.persistence.*;
+import java.util.List;
 
 
-public class Surveyors {
+@Entity
+public class Features {
 
-
+    @Id
+    @GeneratedValue
     private int eid;
-
+    @Basic
     private String name;
+    @Basic
     private double latitude;
+    @Basic
     private double longitude;
+    @Basic
     private String landmark;
-    private Time openTime;
-    private Time closeTime;
+    @Basic
+
     private String history;
+    @Basic
     private String imagePath;
 
-    public Surveyors() {
+    public Features() {
     }
 
-    public Surveyors(int eid, String name, double latitude, double longitude, String landmark, Time openTime, Time closeTime,String history, String imagePath) {
+    public Features(int eid, String name, double latitude, double longitude, String landmark,  String history, String imagePath) {
         this.eid=eid;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-       this.landmark=landmark;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
+        this.landmark=landmark;
         this.history = history;
         this.imagePath = imagePath;
 
@@ -71,22 +77,7 @@ public class Surveyors {
     }
 
 
-    public Time getOpenTime() {
-        return openTime;
-    }
 
-    public void setOpenTime(Time openTime) {
-        this.openTime = openTime;
-    }
-
-
-    public Time getCloseTime() {
-        return closeTime;
-    }
-
-    public void setCloseTime(Time closeTime) {
-        this.closeTime = closeTime;
-    }
 
 
     public String getLandmark() {

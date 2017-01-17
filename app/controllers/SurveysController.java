@@ -2,10 +2,15 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 import models.Surveys;
+
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Result;
+import play.db.jpa.JPAApi;
+import play.db.jpa.Transactional;
+import javax.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -19,46 +24,65 @@ import static play.mvc.Results.ok;
  */
 public class SurveysController {
 
-    private List<Surveys> surveys;
+
 
     public SurveysController() {
-        surveys = Lists.newArrayList(
-                new Surveys(1, "Surveys 1", "sdescription1", "date1"),
-                new Surveys(2, "Surveys 2", "sdescription2", "date2"),
-                new Surveys(3, "Surveys 3", "sdescription3", "date3")
-        );
+//        surveys = Lists.newArrayList(
+//                new Surveys(1, "Surveys 1", "sdescription1", "date1"),
+//                new Surveys(2, "Surveys 2", "sdescription2", "date2"),
+//                new Surveys(3, "Surveys 3", "sdescription3", "date3")
+//        );
+    }
+    private JPAApi jpaApi;
+
+    @Inject
+    public SurveysController(JPAApi jpaApi) {
+        this.jpaApi = jpaApi;
     }
 
+    @Transactional
     public Result getAllSurveys(){
+        TypedQuery<Surveys> query = jpaApi.em().createQuery("select s from Surveys s", Surveys.class);
+        List<Surveys> surveys = query.getResultList();
+        Logger.info("surveys",surveys);
 
         JsonNode json = Json.toJson(surveys);
         return ok(json);
     }
 
+     @Transactional
     public Result getSurveyByID(Integer id){
+    Surveys s= jpaApi.em().find(Surveys.class,id);
 
-        for(int i=0;i<surveys.size();i++){
-            Surveys s=surveys.get(i);
-            if(id==s.getSid()){
-                JsonNode json=Json.toJson(s);
-                return ok(json);
-            }
-        }
-        return notFound("id not found");
-    }
+    JsonNode json=Json.toJson(s);
+    return ok(json);
 
-    public Result deleteSurvey(Integer id){
-        for(int i=0;i<surveys.size();i++){
-            Surveys s=surveys.get(i);
-            if(id==s.getSid()){
-                surveys.remove(s);
-                return ok("survey not available");
-            }
-        }
-        return notFound("id not found");
+
     }
 
 
+//       @Transactional
+//      public Result getSurveyByName(String name){
+//      TypedQuery<Surveys> query = jpaApi.em().createQuery("select s from Surveys s where sname like name", Surveys.class);
+//      List<Surveys> surveys = query.getResultList();
+//      JsonNode json=Json.toJson(surveys);
+//      return ok(json);
+//
+//
+//      }
+//
+
+
+
+@Transactional
+    public Result deleteSurveyById(Integer id){
+         Surveys s= jpaApi.em().find(Surveys.class,id);
+         jpaApi.em().remove(s);
+         return ok("survey deleted");
+    }
+//
+//
+    @Transactional
     public Result addNewSurvey(){
         final JsonNode json = request().body().asJson();
         if (null == json) {
@@ -72,11 +96,7 @@ public class SurveysController {
             return badRequest("Unable to parse json to Surveys object");
         }
 
-        // make sure id and title is not null
-       /* if (null == o.getOname()) {
-            return badRequest();
-        }*/
-        surveys.add(s);
+        jpaApi.em().persist(s);
         return ok(json);
     }
 }
