@@ -23,7 +23,7 @@ DELETE   /Features/:id         controllers.FeaturesController.deleteSurveyEntryB
 GET       /Surveys                 controllers.SurveysController.getAllSurveys()
 POST      /Surveys                controllers.SurveysController.addNewSurvey()
 GET       /Surveys/:id             controllers.SurveysController.getSurveyByID(id:Integer)
-#GET       /Surveys/:name             controllers.SurveysController.getSurveyByName(name:String)
+GET       /getSurveyByName/:sname             controllers.SurveysController.getSurveyByName(sname:String)
 DELETE    /Surveys/:id             controllers.SurveysController.deleteSurveyById(id:Integer)
 
 #users

@@ -34,6 +34,7 @@ public class SurveysController {
 //        );
     }
     private JPAApi jpaApi;
+    public List<Surveys> survey;
 
     @Inject
     public SurveysController(JPAApi jpaApi) {
@@ -59,6 +60,23 @@ public class SurveysController {
 
 
     }
+
+
+    @Transactional
+    public Result getSurveyByName(String sname){
+
+        String q = "select s from Surveys s where sname LIKE :sname ";
+        TypedQuery<Surveys> query = jpaApi.em().createQuery(q, Surveys.class).setParameter("sname", sname);
+        survey = query.getResultList();
+        final JsonNode json = Json.toJson(survey);
+        return ok(json);
+
+
+    }
+
+
+
+
 
 
 //       @Transactional
