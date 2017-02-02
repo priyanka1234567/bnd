@@ -2,6 +2,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
+import models.Surveys;
 import models.Users;
 import play.Logger;
 import play.db.jpa.JPAApi;
@@ -32,7 +33,7 @@ public class UsersController {
     }
 
     private JPAApi jpaApi;
-
+    public List<Users> user;
     @Inject
     public UsersController(JPAApi jpaApi) {
         this.jpaApi = jpaApi;
@@ -46,6 +47,18 @@ public class UsersController {
 
         JsonNode json = Json.toJson(users);
         return ok(json);
+    }
+
+    @Transactional
+    public Result getUserByName(String uname){
+
+        String q = "select u from Users u where uname LIKE :uname ";
+        TypedQuery<Users> query = jpaApi.em().createQuery(q, Users.class).setParameter("uname", uname);
+        user = query.getResultList();
+        final JsonNode json = Json.toJson(user);
+        return ok(json);
+
+
     }
 
     @Transactional

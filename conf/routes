@@ -28,6 +28,7 @@ DELETE    /Surveys/:id             controllers.SurveysController.deleteSurveyByI
 
 #users
 GET       /users                controllers.UsersController.getAllUsers()
-POST       /users                       controllers.UsersController.addUser()
+POST       /postusers                       controllers.UsersController.addUser()
+GET         /userByName/:uname                 controllers.UsersController.getUserByName(uname:String)
 PUT         /users/:id              controllers.UsersController.updateUserPassword(id:Integer)
 

@@ -96,6 +96,10 @@ public class SurveysController {
     public Result deleteSurveyById(Integer id){
          Surveys s= jpaApi.em().find(Surveys.class,id);
          jpaApi.em().remove(s);
+
+         if(null == s){
+             return badRequest("entry not available");
+         }
          return ok("survey deleted");
     }
 //
