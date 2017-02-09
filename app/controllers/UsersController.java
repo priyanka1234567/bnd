@@ -90,6 +90,8 @@ public class UsersController {
 
             return badRequest("json not found");
         }
+
+
         Users u=Json.fromJson(json,Users.class);
         if(null==u)
         {

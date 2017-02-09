@@ -43,7 +43,7 @@ public class SurveysController {
 
     @Transactional
     public Result getAllSurveys(){
-        TypedQuery<Surveys> query = jpaApi.em().createQuery("select s from Surveys s", Surveys.class);
+        TypedQuery<Surveys> query = jpaApi.em().createQuery("select s from Surveys s ", Surveys.class);
         List<Surveys> surveys = query.getResultList();
         Logger.info("surveys",surveys);
 
@@ -76,22 +76,6 @@ public class SurveysController {
 
 
 
-
-
-
-//       @Transactional
-//      public Result getSurveyByName(String name){
-//      TypedQuery<Surveys> query = jpaApi.em().createQuery("select s from Surveys s where sname like name", Surveys.class);
-//      List<Surveys> surveys = query.getResultList();
-//      JsonNode json=Json.toJson(surveys);
-//      return ok(json);
-//
-//
-//      }
-//
-
-
-
 @Transactional
     public Result deleteSurveyById(Integer id){
          Surveys s= jpaApi.em().find(Surveys.class,id);
@@ -102,8 +86,7 @@ public class SurveysController {
          }
          return ok("survey deleted");
     }
-//
-//
+
     @Transactional
     public Result addNewSurvey(){
         final JsonNode json = request().body().asJson();
@@ -120,6 +103,33 @@ public class SurveysController {
 
         jpaApi.em().persist(s);
         return ok(json);
+    }
+
+
+    @Transactional
+    public Result updateSurvey(Integer id) {
+        final JsonNode json = request().body().asJson();
+        if (null == json) {
+
+            return badRequest("json not found");
+        }
+
+        if(null == id){
+            return  badRequest("id not found");
+        }
+
+
+        Surveys s=Json.fromJson(json,Surveys.class);
+        if(null==s)
+        {
+            return badRequest("not found");
+        }
+        Surveys old=jpaApi.em().find(Surveys.class,id);
+        old.setSname(s.getSname());
+        old.setSdescription(s.getSdescription());
+        old.setDate(s.getDate());
+        jpaApi.em().merge(old);
+        return ok("updated Successfully ");
     }
 }
 

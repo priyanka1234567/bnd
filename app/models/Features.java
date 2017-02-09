@@ -1,53 +1,68 @@
 package models;
 
-import java.io.File;
-import java.sql.Time;
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
-public class Features {
+public class Features  {
 
     @Id
     @GeneratedValue
-    private int eid;
+    private int fid;
     @Basic
     private String name;
+
     @Basic
     private double latitude;
     @Basic
     private double longitude;
     @Basic
-    private String landmark;
+    private String country;
+
     @Basic
-
-    private String history;
+    private String state;
     @Basic
-    private String imagePath;
+    private String district;
+    @Basic
+    private String deities;
+    @Basic
+    private String festivals;
+    @Basic
+    private String archstyle;
+    @Basic
+    private String datebuilt;
+    @Basic
+    private String creator;
+    @Basic
+    private String guides;
+    @Basic
+    private String eateries;
+    public Features(){}
 
-    public Features() {
-    }
-
-    public Features(int eid, String name, double latitude, double longitude, String landmark,  String history, String imagePath) {
-        this.eid=eid;
+    public Features(int fid, String name, double latitude, double longitude, String country, String state, String district, String deities, String festivals, String archstyle, String datebuilt, String creator, String tourists, String guides, String eateries) {
+        this.fid = fid;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.landmark=landmark;
-        this.history = history;
-        this.imagePath = imagePath;
-
+        this.country = country;
+        this.state = state;
+        this.district = district;
+        this.deities = deities;
+        this.festivals = festivals;
+        this.archstyle = archstyle;
+        this.datebuilt = datebuilt;
+        this.creator = creator;
+        this.guides = guides;
+        this.eateries = eateries;
     }
 
 
-
-    public int getEid() {
-        return eid;
+    public int getFid() {
+        return fid;
     }
 
-    public void setEid(String name) {
-        this.eid = eid;
+    public void setFid(int fid) {
+        this.fid = fid;
     }
 
     public String getName() {
@@ -58,7 +73,6 @@ public class Features {
         this.name = name;
     }
 
-
     public double getLatitude() {
         return latitude;
     }
@@ -66,7 +80,6 @@ public class Features {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-
 
     public double getLongitude() {
         return longitude;
@@ -76,32 +89,83 @@ public class Features {
         this.longitude = longitude;
     }
 
-
-
-
-
-    public String getLandmark() {
-        return landmark;
+    public String getCountry() {
+        return country;
     }
 
-    public void setLandmark(String landmark) {
-        this.landmark = landmark;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public  String getHistory(){ return history;}
-
-    public void setHistory(String history){this.history=history;}
-
-
-    public String getImagePath() {
-        return imagePath;
+    public String getState() {
+        return state;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setState(String state) {
+        this.state = state;
     }
 
+    public String getDistrict() {
+        return district;
+    }
 
+    public void setDistrict(String district) {
+        this.district = district;
+    }
 
+    public String getDeities() {
+        return deities;
+    }
 
+    public void setDeities(String deities) {
+        this.deities = deities;
+    }
+
+    public String getFestivals() {
+        return festivals;
+    }
+
+    public void setFestivals(String festivals) {
+        this.festivals = festivals;
+    }
+
+    public String getArchstyle() {
+        return archstyle;
+    }
+
+    public void setArchstyle(String archstyle) {
+        this.archstyle = archstyle;
+    }
+
+    public String getDatebuilt() {
+        return datebuilt;
+    }
+
+    public void setDatebuilt(String datebuilt) {
+        this.datebuilt = datebuilt;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getEateries() {
+        return eateries;
+    }
+
+    public void setEateries(String eateries) {
+        this.eateries = eateries;
+    }
+
+    public String getGuides() {
+        return guides;
+    }
+
+    public void setGuides(String guides) {
+        this.guides = guides;
+    }
 }

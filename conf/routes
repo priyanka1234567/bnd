@@ -14,21 +14,28 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 
 #survey entries
-GET      /Features             controllers.FeaturesController.getAllSurveyentries()
-POST     /Features             controllers.FeaturesController.addNewSurveyEntry()
-GET      /Features/:id         controllers.FeaturesController.getSurveyEntryByID(id:Integer)
-DELETE   /Features/:id         controllers.FeaturesController.deleteSurveyEntryById(id:Integer)
+GET      /Features                                      controllers.FeatureController.getAllFeatures()
+POST     /postFeatures                                  controllers.FeatureController.addNewFeature()
+GET      /Features/:id                                  controllers.FeatureController.getFeatureByID(id:Integer)
+DELETE   /Features/:id                                  controllers.FeatureController.deleteFeatureById(id:Integer)
+GET      /Features/:name                                controllers.FeatureController.getFeatureByName(name:String)
+PUT      /Features/:id                                  controllers.FeatureController.updateFeature(id:Integer)
+
+
 
 #survey details
-GET       /Surveys                 controllers.SurveysController.getAllSurveys()
-POST      /Surveys                controllers.SurveysController.addNewSurvey()
-GET       /Surveys/:id             controllers.SurveysController.getSurveyByID(id:Integer)
-GET       /getSurveyByName/:sname             controllers.SurveysController.getSurveyByName(sname:String)
-DELETE    /Surveys/:id             controllers.SurveysController.deleteSurveyById(id:Integer)
+GET       /Surveys                                      controllers.SurveysController.getAllSurveys()
+POST      /Surveys                                      controllers.SurveysController.addNewSurvey()
+GET       /Surveys/:id                                  controllers.SurveysController.getSurveyByID(id:Integer)
+GET       /getSurveyByName/:sname                       controllers.SurveysController.getSurveyByName(sname:String)
+DELETE    /Surveys/:id                                  controllers.SurveysController.deleteSurveyById(id:Integer)
+PUT       /Surveys/:id                                  controllers.SurveysController.updateSurvey(id:Integer)
+
+
 
 #users
-GET       /users                controllers.UsersController.getAllUsers()
-POST       /postusers                       controllers.UsersController.addUser()
-GET         /userByName/:uname                 controllers.UsersController.getUserByName(uname:String)
-PUT         /users/:id              controllers.UsersController.updateUserPassword(id:Integer)
+GET       /users                                        controllers.UsersController.getAllUsers()
+POST       /postusers                                   controllers.UsersController.addUser()
+GET         /userByName/:uname                          controllers.UsersController.getUserByName(uname:String)
+PUT         /users/:id                                  controllers.UsersController.updateUserPassword(id:Integer)
 
