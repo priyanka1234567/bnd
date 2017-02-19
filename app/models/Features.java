@@ -34,12 +34,14 @@ public class Features  {
     @Basic
     private String creator;
     @Basic
+    private String image;
+    @Basic
     private String guides;
     @Basic
     private String eateries;
     public Features(){}
 
-    public Features(int fid, String name, double latitude, double longitude, String country, String state, String district, String deities, String festivals, String archstyle, String datebuilt, String creator, String tourists, String guides, String eateries) {
+    public Features(int fid, String name, double latitude, double longitude, String country,String image, String state, String district, String deities, String festivals, String archstyle, String datebuilt, String creator, String tourists, String guides, String eateries) {
         this.fid = fid;
         this.name = name;
         this.latitude = latitude;
@@ -52,6 +54,7 @@ public class Features  {
         this.archstyle = archstyle;
         this.datebuilt = datebuilt;
         this.creator = creator;
+        this.image=image;
         this.guides = guides;
         this.eateries = eateries;
     }
@@ -167,5 +170,13 @@ public class Features  {
 
     public void setGuides(String guides) {
         this.guides = guides;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
