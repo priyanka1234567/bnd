@@ -20,6 +20,12 @@ public class Users {
     @Basic
     private String upwd;
 
+    @Basic
+    private  String salt;
+
+    @Basic
+    private  String num;
+
 //    @OneToMany
 //    @JoinColumn(name="u_id", referencedColumnName = "uid")
 //    private List<Surveys> survey1;
@@ -55,11 +61,29 @@ public class Users {
     public Users() {
     }
 
-    public Users(int uid, String uname, String upwd) {
+    public Users(int uid, String uname, String upwd,String salt,String  num) {
         this.uid = uid;
         this.uname = uname;
         this.upwd = upwd;
+        this.salt=salt;
+        this.num=num;
+
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
 }
 
