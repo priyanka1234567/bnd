@@ -1,7 +1,10 @@
 package models;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 /**
  * Created by pdevkare on 07/01/17.
  */
@@ -12,11 +15,12 @@ public class Users {
 
     @Id
     @GeneratedValue
-
+    @Column(name = "uid")
     private int uid;
 
     @Basic
     private String uname;
+
     @Basic
     private String upwd;
 
@@ -26,9 +30,9 @@ public class Users {
     @Basic
     private  String num;
 
-//    @OneToMany
-//    @JoinColumn(name="u_id", referencedColumnName = "uid")
-//    private List<Surveys> survey1;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="uid", referencedColumnName = "uid")
+    private List<Features> features;
 
 //    @OneToMany(mappedBy = "Users", cascade=CascadeType.ALL)
 //    public List<Surveys>  survey = new ArrayList<Surveys>();
@@ -84,6 +88,14 @@ public class Users {
 
     public void setNum(String num) {
         this.num = num;
+    }
+
+    public List<Features> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Features> features) {
+        this.features = features;
     }
 }
 

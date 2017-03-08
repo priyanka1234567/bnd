@@ -17,6 +17,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET      /Features                                      controllers.FeatureController.getAllFeatures()
 POST     /Features                                      controllers.FeatureController.addNewFeature()
 GET      /Features/:id                                  controllers.FeatureController.getFeatureByID(id:Integer)
+GET      /FeatureByUserUid/:uid                         controllers.FeatureController.getFeatureByUserID(uid:Integer)
 DELETE   /Features/:id                                  controllers.FeatureController.deleteFeatureById(id:Integer)
 GET      /Features/:name                                controllers.FeatureController.getFeatureByName(name:String)
 PUT      /Features/:id                                  controllers.FeatureController.updateFeature(id:Integer)
@@ -34,9 +35,10 @@ PUT       /Surveys/:id                                  controllers.SurveysContr
 
 
 #users
-GET       /users                                        controllers.UsersController.getAllUsers()
-POST       /users                                       controllers.UsersController.addUser()
-GET         /userByName/:uname                          controllers.UsersController.getUserByName(uname:String)
+GET         /users                                      controllers.UsersController.getAllUsers()
+POST        /users                                      controllers.UsersController.addUser()
+GET         /users/:id                                  controllers.UsersController.getUserByID(id:Integer)
+GET         /users/:uname                               controllers.UsersController.getUserByName(uname:String)
 PUT         /users/:id                                  controllers.UsersController.updateUserPassword(id:Integer)
 
 

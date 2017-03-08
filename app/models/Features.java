@@ -6,11 +6,18 @@ import javax.persistence.*;
 @Entity
 public class Features  {
 
+
+
+    @Column(name="uid")
+    private int uid;
+
+
     @Id
     @GeneratedValue
     private int fid;
     @Basic
     private String name;
+
 
     @Basic
     private double latitude;
@@ -178,5 +185,14 @@ public class Features  {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 }

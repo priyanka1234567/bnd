@@ -42,7 +42,19 @@ public class FeatureController {
 
     @Transactional
     public Result getFeatureByID(Integer id){
+
+
         Features f= jpaApi.em().find(Features.class,id);
+
+        JsonNode json=Json.toJson(f);
+        return ok(json);
+
+
+    }
+
+    @Transactional
+    public Result getFeatureByUserID(Integer uid){
+        Features f= jpaApi.em().find(Features.class,uid);
 
         JsonNode json=Json.toJson(f);
         return ok(json);
@@ -90,7 +102,7 @@ public class FeatureController {
             return badRequest("Unable to parse json to Surveys object");
         }
 
-        jpaApi.em().persist(f);
+        jpaApi.em().merge(f);
         return ok(json);
     }
 

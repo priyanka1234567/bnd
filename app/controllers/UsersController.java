@@ -25,11 +25,7 @@ public class UsersController {
 //    private List<Users> users;
 
     public UsersController() {
-//       users = Lists.newArrayList(
-//                new Users(1, "Surveys 1", "owner1_pwd"),
-//                new Users(2, "Surveys 2", "owner2_pwd"),
-//                new Users(3, "Surveys 3", "owner3_pwd")
-//        );
+
     }
 
     private JPAApi jpaApi;
@@ -62,6 +58,17 @@ public class UsersController {
     }
 
     @Transactional
+    public Result getUserByID(Integer id){
+        Users u= jpaApi.em().find(Users.class,id);
+
+        JsonNode json=Json.toJson(u);
+        return ok(json);
+
+
+    }
+
+
+    @Transactional
     public Result addUser() {
         final JsonNode json = request().body().asJson();
         if (null == json) {
@@ -75,11 +82,7 @@ public class UsersController {
             return badRequest("Unable to parse json to User object");
         }
 
-        // make sure id and title is not null
-       /* if (null == o.getOname()) {
-            return badRequest();
-        }*/
-        jpaApi.em().persist(u);
+        jpaApi.em().merge(u);
         return ok(json);
     }
 
