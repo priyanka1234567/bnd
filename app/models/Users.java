@@ -13,11 +13,9 @@ public class Users {
 
 
 
-    @Id
-    @GeneratedValue
-    @Column(name = "uid")
-    private int uid;
 
+
+    @Id
     @Basic
     private String uname;
 
@@ -25,26 +23,35 @@ public class Users {
     private String upwd;
 
     @Basic
-    private  String salt;
+    private String salt ;
+
+
 
     @Basic
-    private  String num;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="uid", referencedColumnName = "uid")
-    private List<Features> features;
-
-//    @OneToMany(mappedBy = "Users", cascade=CascadeType.ALL)
-//    public List<Surveys>  survey = new ArrayList<Surveys>();
+    private String Token;
 
 
-    public int getUid() {
-        return uid;
+
+
+
+    public Users( String uname, String upwd, String salt, String token, List<Features> features) {
+
+        this.uname = uname;
+        this.upwd = upwd;
+        this.salt = salt;
+        Token = token;
+
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public String getSalt() {
+        return salt;
     }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+
 
     public String getUname() {
         return uname;
@@ -65,37 +72,12 @@ public class Users {
     public Users() {
     }
 
-    public Users(int uid, String uname, String upwd,String salt,String  num) {
-        this.uid = uid;
-        this.uname = uname;
-        this.upwd = upwd;
-        this.salt=salt;
-        this.num=num;
-
+    public String getToken() {
+        return Token;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getNum() {
-        return num;
-    }
-
-    public void setNum(String num) {
-        this.num = num;
-    }
-
-    public List<Features> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<Features> features) {
-        this.features = features;
+    public void setToken(String token) {
+        Token = token;
     }
 }
 

@@ -40,8 +40,9 @@ POST        /users                                      controllers.UsersControl
 GET         /users/:id                                  controllers.UsersController.getUserByID(id:Integer)
 GET         /users/:uname                               controllers.UsersController.getUserByName(uname:String)
 PUT         /users/:id                                  controllers.UsersController.updateUserPassword(id:Integer)
+GET         /users/validate/:uname                     controllers.UsersController.validateUser(uname:String,upwd:String)
 
-
+#validate/abc&upwd=abc
 # Image controller
 
 POST /images                                            controllers.ImageController.uploadImage()

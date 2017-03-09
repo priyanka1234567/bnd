@@ -4,12 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Features  {
-
-
-
-    @Column(name="uid")
-    private int uid;
+public class Features {
 
 
     @Id
@@ -46,9 +41,11 @@ public class Features  {
     private String guides;
     @Basic
     private String eateries;
-    public Features(){}
 
-    public Features(int fid, String name, double latitude, double longitude, String country,String image, String state, String district, String deities, String festivals, String archstyle, String datebuilt, String creator, String tourists, String guides, String eateries) {
+    public Features() {
+    }
+
+    public Features(int fid, String name, double latitude, double longitude, String country, String image, String state, String district, String deities, String festivals, String archstyle, String datebuilt, String creator, String tourists, String guides, String eateries) {
         this.fid = fid;
         this.name = name;
         this.latitude = latitude;
@@ -61,7 +58,7 @@ public class Features  {
         this.archstyle = archstyle;
         this.datebuilt = datebuilt;
         this.creator = creator;
-        this.image=image;
+        this.image = image;
         this.guides = guides;
         this.eateries = eateries;
     }
@@ -188,11 +185,4 @@ public class Features  {
     }
 
 
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
 }
