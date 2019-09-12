@@ -49,7 +49,6 @@ public class UsersController {
         Logger.debug("hii");
         Logger.debug(user.toString());
         JsonNode json = Json.toJson(user);
-        
         return ok(json);
     }
 
